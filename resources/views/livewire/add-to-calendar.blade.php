@@ -3,11 +3,13 @@
 use Livewire\Volt\Component;
 use Carbon\Carbon;
 use App\Models\CalendarDate;
+use Livewire\Attributes\On;
 
 new class extends Component {
     public int $year;
     public array $months = [];
     public array $days = [];
+
 
     public string $viewState = 'Click to Add or Remove';
 
@@ -17,7 +19,6 @@ new class extends Component {
         $this->months = collect(range(1, 12))
             ->map(fn ($month) => Carbon::create($this->year, $month, 1))
             ->all();
-    
     }
     public function getAddedProperty() {
         $rows = CalendarDate::where('user_id', auth()->id())
@@ -32,6 +33,7 @@ new class extends Component {
 
         return $added;
     }
+    #[On('toggle')]
     public function toggle($date, $type) {
         $user = auth()->user();
 
@@ -55,12 +57,14 @@ new class extends Component {
     {
         $this->year++;
         $this->generateMonths();
+
     }
 
     public function prevYear()
     {
         $this->year--;
         $this->generateMonths();
+
     }
 
     private function generateMonths()
@@ -68,6 +72,7 @@ new class extends Component {
         $this->months = collect(range(1, 12))
             ->map(fn ($month) => Carbon::create($this->year, $month, 1))
             ->all();
+
     }
 }; ?>
 
@@ -81,9 +86,9 @@ new class extends Component {
 
     <div class="overflow-auto">
         <div class="flex items-center gap-2 mt-2 mb-2">
-            <button wire:click="prevYear">←</button>
+            <button @click="$wire.prevYear()">←</button>
             <span class="font-bold text-lg">{{ $year }}</span>
-            <button wire:click="nextYear">→</button>
+            <button @click="$wire.nextYear()">→</button>
         </div>
         <div class="flex flex-row flex-wrap gap-x-6 gap-y-2">
             <div class="flex items-center gap-2">
@@ -130,7 +135,7 @@ new class extends Component {
     </div>
 
 
-    <div class="overflow-auto" wire:ignore x-data="{ added: @js($this->added) }">
+    <div class="overflow-auto" wire:key="year-{{ $year }}" x-data="{ added: @js($this->added) }">
         <table class="table-auto w-full text-sm">
             <thead>
                 <tr>
@@ -155,13 +160,15 @@ new class extends Component {
                                 @php
                                     $date = Carbon::create($this->year, $month->month, $day)->format('Y-m-d');
                                 @endphp
-                                <div class="flex flex-row">
-                                    <div x-show="period" @click="added['{{ $date }}'] ??= {}; added['{{ $date }}']['period'] = !added['{{ $date }}']['period']; $wire.toggle('{{ $date }}', 'period')" x-bind:class="(added['{{ $date }}']?.period ?? false) ? 'bg-red-800' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
-                                    <div x-show="fertility" @click="added['{{ $date }}'] ??= {}; added['{{ $date }}']['fertility'] = !added['{{ $date }}']['fertility']; $wire.toggle('{{ $date }}', 'fertility')" x-bind:class="(added['{{ $date }}']?.fertility ?? false) ? 'bg-orange-600' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
-                                    <div x-show="sex" @click="added['{{ $date }}'] ??= {}; added['{{ $date }}']['sex'] = !added['{{ $date }}']['sex']; $wire.toggle('{{ $date }}', 'sex')" x-bind:class="(added['{{ $date }}']?.sex ?? false) ? 'bg-purple-800' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
-                                    <div x-show="orgasms" @click="added['{{ $date }}'] ??= {}; added['{{ $date }}']['orgasms'] = !added['{{ $date }}']['orgasms']; $wire.toggle('{{ $date }}', 'orgasms')" x-bind:class="(added['{{ $date }}']?.orgasms ?? false) ? 'bg-indigo-500' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
-                                    <div x-show="medication" @click="added['{{ $date }}'] ??= {}; added['{{ $date }}']['medication'] = !added['{{ $date }}']['medication']; $wire.toggle('{{ $date }}', 'medication')" x-bind:class="(added['{{ $date }}']?.medication ?? false) ? 'bg-green-600' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
-                                    <div x-show="pregnancy" @click="added['{{ $date }}'] ??= {}; added['{{ $date }}']['pregnancy'] = !added['{{ $date }}']['pregnancy']; $wire.toggle('{{ $date }}', 'pregnancy')" x-bind:class="(added['{{ $date }}']?.pregnancy ?? false) ? 'bg-blue-500' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
+                                <div x-data="{ rowdate: '{{$date}}' }">
+                                <div class="flex flex-row" wire:ignore>
+                                    <div x-show="period" @click="added[rowdate] ??= {}; added[rowdate]['period'] = !added[rowdate]['period']; toggleCalendar(rowdate, 'period');" x-bind:class="(added[rowdate]?.period ?? false) ? 'bg-red-800' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
+                                    <div x-show="fertility" @click="added[rowdate] ??= {}; added[rowdate]['fertility'] = !added[rowdate]['fertility']; toggleCalendar(rowdate, 'fertility');" x-bind:class="(added[rowdate]?.fertility ?? false) ? 'bg-orange-600' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
+                                    <div x-show="sex" @click="added[rowdate] ??= {}; added[rowdate]['sex'] = !added[rowdate]['sex']; toggleCalendar(rowdate, 'sex');" x-bind:class="(added[rowdate]?.sex ?? false) ? 'bg-purple-800' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
+                                    <div x-show="orgasms" @click="added[rowdate] ??= {}; added[rowdate]['orgasms'] = !added[rowdate]['orgasms']; toggleCalendar(rowdate, 'orgasms');" x-bind:class="(added[rowdate]?.orgasms ?? false) ? 'bg-indigo-500' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
+                                    <div x-show="medication" @click="added[rowdate] ??= {}; added[rowdate]['medication'] = !added[rowdate]['medication']; toggleCalendar(rowdate, 'medication');" x-bind:class="(added[rowdate]?.medication ?? false) ? 'bg-green-600' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
+                                    <div x-show="pregnancy" @click="added[rowdate] ??= {}; added[rowdate]['pregnancy'] = !added[rowdate]['pregnancy']; toggleCalendar(rowdate, 'pregnancy');" x-bind:class="(added[rowdate]?.pregnancy ?? false) ? 'bg-blue-500' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
+                                </div>
                                 </div>
                                 @endif
                             </td>
@@ -171,5 +178,4 @@ new class extends Component {
             </tbody>
         </table>
     </div>
-    
 </div>

@@ -49,6 +49,7 @@ new class extends Component {
         $this->months = collect(range(1, 12))
             ->map(fn ($month) => Carbon::create($this->year, $month, 1))
             ->all();
+
     }
 }; ?>
 

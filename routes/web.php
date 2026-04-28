@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CalendarToggleController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -17,4 +18,7 @@ Route::middleware([
     Route::get('/adding', function () {
         return view('adding');
     })->name('adding');
+
+    Route::post('/calendar/toggle', CalendarToggleController::class)->name('calendar.toggle');
+
 });
