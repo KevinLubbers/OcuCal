@@ -8,6 +8,11 @@ x-bind:class="{'dark': darkMode}">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <!-- PWA manifest -->
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <meta name="theme-color" content="#54526e">
+
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->

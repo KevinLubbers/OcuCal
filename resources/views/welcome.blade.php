@@ -9,6 +9,11 @@ x-bind:class="{'dark': darkMode}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
+        <!-- PWA manifest -->
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+        <meta name="theme-color" content="#54526e">
+
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
         <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />

@@ -8,3 +8,9 @@ window.toggleCalendar = function(date, type) {
         body: JSON.stringify({ date, type })
     });
 }
+
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/sw.js');
+    });
+}
