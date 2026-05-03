@@ -13,10 +13,7 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link href="{{ route('calendar') }}" :active="request()->routeIs('calendar')">
-                        {{ __('View Calendar') }}
-                    </x-nav-link>
-                    <x-nav-link href="{{ route('adding') }}" :active="request()->routeIs('adding')">
-                        {{ __('Add to Calendar') }}
+                        {{ __('Calendar') }}
                     </x-nav-link>
                 </div>
             </div>
