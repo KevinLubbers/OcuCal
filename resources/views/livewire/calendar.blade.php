@@ -77,10 +77,9 @@ new class extends Component {
 
 <div class="bg-white dark:text-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/100 dark:via-transparent border-b border-gray-200 dark:border-gray-700"
     x-data="{ period: false, fertility: false, sex: false, orgasms: false, medication: false, pregnancy: false, clearAll: false, showAll: false , unlocked: false, locked_url: 'imgs/locked.png', unlocked_url: 'imgs/unlocked.png', dragging: false}"
-    @mousedown="dragging = true"
-    @mouseup.window="dragging = false"
-    @touchstart="dragging = true"
-    @touchend.window="dragging = false" > 
+    @pointerdown="dragging = true"
+    @pointerup.window="dragging = false"
+    @pointercancel.window="dragging = false" > 
 
     <h1 x-text="!unlocked ? 'Viewing Calendar' : 'Editing Calendar'" class="text-2xl font-medium text-gray-900 dark:text-white">
     </h1>
@@ -133,14 +132,14 @@ new class extends Component {
                 <x-label for="showAll" value="Show All" />
             </div>
         </div>
-        <div class="flex flex-row flex-wrap gap-x-6 gap-y-2 mt-2 pl-2 items-center">
+        <div class="flex flex-row flex-wrap gap-x-6 gap-y-2 mt-2 mb-2 pl-2 items-center">
             <img x-bind:src="unlocked ? unlocked_url : locked_url" alt="Locked / Unlocked Icon" class="h-6 w-6">
             <x-button class="text-center" x-text="unlocked ? 'Click to Lock Calendar' : 'Click to Unlock Calendar'" @click="unlocked = !unlocked"></x-button>
         </div>
     </div>
 
 
-    <div class="overflow-auto" wire:key="year-{{ $year }}" x-data="{ added: @js($this->added) }">
+    <div class="overflow-auto" style="user-select:none; -webkit-user-select:none;" wire:key="year-{{ $year }}" x-data="{ added: @js($this->added) }">
         <table class="table-auto w-full text-sm">
             <thead>
                 <tr>
@@ -167,12 +166,12 @@ new class extends Component {
                                 @endphp
                                 <div x-data="{ rowdate: '{{$date}}' }">
                                 <div class="flex flex-row" wire:ignore>
-                                    <div x-show="period" @touchmove.prevent="if (!unlocked || !dragging) return; added[rowdate] ??= {}; added[rowdate]['period'] = !added[rowdate]['period']; toggleCalendar(rowdate, 'period');" @mouseenter="if (!unlocked || !dragging) return; added[rowdate] ??= {}; added[rowdate]['period'] = !added[rowdate]['period']; toggleCalendar(rowdate, 'period');" @mousedown="if (!unlocked) return; added[rowdate] ??= {}; added[rowdate]['period'] = !added[rowdate]['period']; toggleCalendar(rowdate, 'period');" x-bind:class="(added[rowdate]?.period ?? false) ? 'bg-red-800' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
-                                    <div x-show="fertility" @click="if (!unlocked) return; added[rowdate] ??= {}; added[rowdate]['fertility'] = !added[rowdate]['fertility']; toggleCalendar(rowdate, 'fertility');" x-bind:class="(added[rowdate]?.fertility ?? false) ? 'bg-orange-600' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
-                                    <div x-show="sex" @click="if (!unlocked) return; added[rowdate] ??= {}; added[rowdate]['sex'] = !added[rowdate]['sex']; toggleCalendar(rowdate, 'sex');" x-bind:class="(added[rowdate]?.sex ?? false) ? 'bg-purple-800' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
-                                    <div x-show="orgasms" @click="if (!unlocked) return; added[rowdate] ??= {}; added[rowdate]['orgasms'] = !added[rowdate]['orgasms']; toggleCalendar(rowdate, 'orgasms');" x-bind:class="(added[rowdate]?.orgasms ?? false) ? 'bg-indigo-500' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
-                                    <div x-show="medication" @click="if (!unlocked) return; added[rowdate] ??= {}; added[rowdate]['medication'] = !added[rowdate]['medication']; toggleCalendar(rowdate, 'medication');" x-bind:class="(added[rowdate]?.medication ?? false) ? 'bg-green-600' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
-                                    <div x-show="pregnancy" @click="if (!unlocked) return; added[rowdate] ??= {}; added[rowdate]['pregnancy'] = !added[rowdate]['pregnancy']; toggleCalendar(rowdate, 'pregnancy');" x-bind:class="(added[rowdate]?.pregnancy ?? false) ? 'bg-blue-500' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
+                                    <div x-show="period" @pointerenter="if (!unlocked || !dragging) return; added[rowdate] ??= {}; added[rowdate]['period'] = !added[rowdate]['period']; toggleCalendar(rowdate, 'period');" @pointerdown="if (!unlocked) return; added[rowdate] ??= {}; added[rowdate]['period'] = !added[rowdate]['period']; toggleCalendar(rowdate, 'period');" x-bind:style="$data.unlocked ? 'cursor: pointer' : 'cursor: default'" x-bind:class="(added[rowdate]?.period ?? false) ? 'bg-red-800' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
+                                    <div x-show="fertility" @pointerenter="if (!unlocked || !dragging) return; added[rowdate] ??= {}; added[rowdate]['fertility'] = !added[rowdate]['fertility']; toggleCalendar(rowdate, 'fertility');" @pointerdown="if (!unlocked) return; added[rowdate] ??= {}; added[rowdate]['fertility'] = !added[rowdate]['fertility']; toggleCalendar(rowdate, 'fertility');" x-bind:style="$data.unlocked ? 'cursor: pointer' : 'cursor: default'" x-bind:class="(added[rowdate]?.fertility ?? false) ? 'bg-orange-600' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
+                                    <div x-show="sex" @pointerenter="if (!unlocked || !dragging) return; added[rowdate] ??= {}; added[rowdate]['sex'] = !added[rowdate]['sex']; toggleCalendar(rowdate, 'sex');" @pointerdown="if (!unlocked) return; added[rowdate] ??= {}; added[rowdate]['sex'] = !added[rowdate]['sex']; toggleCalendar(rowdate, 'sex');" x-bind:style="$data.unlocked ? 'cursor: pointer' : 'cursor: default'" x-bind:class="(added[rowdate]?.sex ?? false) ? 'bg-purple-800' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
+                                    <div x-show="orgasms" @pointerenter="if (!unlocked || !dragging) return; added[rowdate] ??= {}; added[rowdate]['orgasms'] = !added[rowdate]['orgasms']; toggleCalendar(rowdate, 'orgasms');" @pointerdown="if (!unlocked) return; added[rowdate] ??= {}; added[rowdate]['orgasms'] = !added[rowdate]['orgasms']; toggleCalendar(rowdate, 'orgasms');" x-bind:style="$data.unlocked ? 'cursor: pointer' : 'cursor: default'" x-bind:class="(added[rowdate]?.orgasms ?? false) ? 'bg-indigo-500' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
+                                    <div x-show="medication" @pointerenter="if (!unlocked || !dragging) return; added[rowdate] ??= {}; added[rowdate]['medication'] = !added[rowdate]['medication']; toggleCalendar(rowdate, 'medication');" @pointerdown="if (!unlocked) return; added[rowdate] ??= {}; added[rowdate]['medication'] = !added[rowdate]['medication']; toggleCalendar(rowdate, 'medication');" x-bind:style="$data.unlocked ? 'cursor: pointer' : 'cursor: default'" x-bind:class="(added[rowdate]?.medication ?? false) ? 'bg-green-600' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
+                                    <div x-show="pregnancy" @pointerenter="if (!unlocked || !dragging) return; added[rowdate] ??= {}; added[rowdate]['pregnancy'] = !added[rowdate]['pregnancy']; toggleCalendar(rowdate, 'pregnancy');" @pointerdown="if (!unlocked) return; added[rowdate] ??= {}; added[rowdate]['pregnancy'] = !added[rowdate]['pregnancy']; toggleCalendar(rowdate, 'pregnancy');" x-bind:style="$data.unlocked ? 'cursor: pointer' : 'cursor: default'" x-bind:class="(added[rowdate]?.pregnancy ?? false) ? 'bg-blue-500' : 'bg-gray-200 dark:bg-gray-700'" class="mx-auto w-4 h-4 rounded-full"></div>
                                 </div>
                                 </div>
                                 @endif
