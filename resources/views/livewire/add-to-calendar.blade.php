@@ -10,7 +10,7 @@ new class extends Component {
     public array $months = [];
     public array $days = [];
 
-
+    public string $buttonState = 'Click to Unlock Calendar';
     public string $viewState = 'Click to Add or Remove';
 
     public function mount() {
@@ -77,20 +77,20 @@ new class extends Component {
 }; ?>
 
 
-<div class="lg:p-8 bg-white dark:text-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/100 dark:via-transparent border-b border-gray-200 dark:border-gray-700"
-    x-data="{ period: false, fertility: false, sex: false, orgasms: false, medication: false, pregnancy: false, clearAll: false, showAll: false }" > 
+<div class="bg-white dark:text-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/100 dark:via-transparent border-b border-gray-200 dark:border-gray-700"
+    x-data="{ period: false, fertility: false, sex: false, orgasms: false, medication: false, pregnancy: false, clearAll: false, showAll: false , unlocked: false, locked_url: 'imgs/locked.png', unlocked_url: 'imgs/unlocked.png', buttonState: 'Click to Unlock Calendar', viewState: 'Click to Add or Remove'}" > 
 
     <h1 class="text-2xl font-medium text-gray-900 dark:text-white">
        {{ $viewState }}
     </h1>
 
     <div class="overflow-auto">
-        <div class="flex items-center gap-2 mt-2 mb-2">
+        <div class="flex items-center gap-2 mt-2 mb-2 pl-2">
             <button @click="$wire.prevYear()">←</button>
             <span class="font-bold text-lg">{{ $year }}</span>
             <button @click="$wire.nextYear()">→</button>
         </div>
-        <div class="flex flex-row flex-wrap gap-x-6 gap-y-2">
+        <div class="flex flex-row flex-wrap gap-x-6 gap-y-2 pl-2">
             <div class="flex items-center gap-2">
                 <x-checkbox x-model="period" />
                 <x-label for="period" value="Add Period" />
@@ -122,7 +122,7 @@ new class extends Component {
                 <div class="mx-auto w-4 h-4 rounded-full bg-blue-500"></div>
             </div>
         </div>
-        <div class="flex flex-row flex-wrap gap-x-6 gap-y-2 mt-2">
+        <div class="flex flex-row flex-wrap gap-x-6 gap-y-2 mt-2 pl-2">
             <div class="flex items-center gap-2">
                 <x-checkbox x-model="clearAll" @click="!clearAll ? (period = false, fertility = false, sex = false, orgasms = false, medication = false, pregnancy = false, showAll = false, clearAll = false) : null" />
                 <x-label for="clearAll" value="Clear All" />
@@ -132,6 +132,10 @@ new class extends Component {
                 <x-label for="showAll" value="Show All" />
             </div>
         </div>
+        <div class="flex flex-row flex-wrap gap-x-6 gap-y-2 mt-2 pl-2 items-center">
+            <img x-bind:src="unlocked ? unlocked_url : locked_url" alt="Locked / Unlocked Icon" class="h-6 w-6">
+            <x-button class="text-center" x-text="unlocked ? 'Click to Lock Calendar' : 'Click to Unlock Calendar'" @click="unlocked = !unlocked"></x-button>
+        </div>
     </div>
 
 
@@ -139,7 +143,7 @@ new class extends Component {
         <table class="table-auto w-full text-sm">
             <thead>
                 <tr>
-                    <th class="p-2">Day</th>
+                    <th class="p-2 sticky left-0 bg-white dark:bg-gray-800 z-10">Day</th>
 
                     @foreach ($months as $month)
                         <th class="p-2 text-center">
@@ -152,7 +156,7 @@ new class extends Component {
             <tbody>
                 @foreach ($days as $day)
                     <tr>
-                        <td class="font-bold text-center">{{ $day }}</td>
+                        <td class="font-bold text-center sticky left-0 bg-white dark:bg-gray-800 z-10">{{ $day }}</td>
 
                         @foreach ($months as $month)
                             <td class="text-center align-middle border-l border-r border-gray-700 dark:border-gray-200">
