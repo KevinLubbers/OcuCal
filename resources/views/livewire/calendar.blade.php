@@ -81,7 +81,7 @@ new class extends Component {
     @mouseup.window="dragging = false"
     @mouseleave.window="dragging = false" > 
 
-    <h1 x-text="!unlocked ? 'Viewing Calendar' : 'Editing Calendar'" class="text-2xl font-medium text-gray-900 dark:text-white">
+    <h1 x-cloak x-text="!unlocked ? 'Viewing Calendar' : 'Editing Calendar'" class="text-2xl font-medium text-gray-900 dark:text-white">
     </h1>
 
     <div class="overflow-auto">
@@ -93,32 +93,32 @@ new class extends Component {
         <div class="flex flex-row flex-wrap gap-x-6 gap-y-2 pl-2">
             <div class="flex items-center gap-2">
                 <x-checkbox x-model="period" />
-                <x-label for="period" x-text="!unlocked ? 'Show Period' : 'Add Period'" />
+                <x-label x-cloak for="period" x-text="!unlocked ? 'Show Period' : 'Add Period'" />
                 <div class="mx-auto w-4 h-4 rounded-full bg-red-800"></div>
             </div>
             <div class="flex items-center gap-2">
                 <x-checkbox x-model="fertility" />
-                <x-label for="fertility" x-text="!unlocked ? 'Show Fertility' : 'Add Fertility'" />
+                <x-label x-cloak for="fertility" x-text="!unlocked ? 'Show Fertility' : 'Add Fertility'" />
                 <div class="mx-auto w-4 h-4 rounded-full bg-orange-600"></div>
             </div>
             <div class="flex items-center gap-2">
                 <x-checkbox x-model="sex"  />
-                <x-label for="sex" x-text="!unlocked ? 'Show Sexual Activity' : 'Add Sexual Activity'" />
+                <x-label x-cloak for="sex" x-text="!unlocked ? 'Show Sexual Activity' : 'Add Sexual Activity'" />
                 <div class="mx-auto w-4 h-4 rounded-full bg-purple-800"></div>
             </div>
             <div class="flex items-center gap-2">
                 <x-checkbox x-model="orgasms" />
-                <x-label for="orgasms" x-text="!unlocked ? 'Show Orgasms' : 'Add Orgasms'" />
+                <x-label x-cloak for="orgasms" x-text="!unlocked ? 'Show Orgasms' : 'Add Orgasms'" />
                 <div class="mx-auto w-4 h-4 rounded-full bg-indigo-500"></div>
             </div>
             <div class="flex items-center gap-2">
                 <x-checkbox x-model="medication" />
-                <x-label for="medication" x-text="!unlocked ? 'Show Medication' : 'Add Medication'" />
+                <x-label x-cloak for="medication" x-text="!unlocked ? 'Show Medication' : 'Add Medication'" />
                 <div class="mx-auto w-4 h-4 rounded-full bg-green-600"></div>
             </div>
             <div class="flex items-center gap-2">
                 <x-checkbox x-model="pregnancy" />
-                <x-label for="pregnancy" x-text="!unlocked ? 'Show Pregnancy' :'Add Pregnancy'" />
+                <x-label x-cloak for="pregnancy" x-text="!unlocked ? 'Show Pregnancy' :'Add Pregnancy'" />
                 <div class="mx-auto w-4 h-4 rounded-full bg-blue-500"></div>
             </div>
         </div>
@@ -133,8 +133,8 @@ new class extends Component {
             </div>
         </div>
         <div class="flex flex-row flex-wrap gap-x-6 gap-y-2 mt-2 mb-2 pl-2 items-center">
-            <img x-bind:src="unlocked ? unlocked_url : locked_url" alt="Locked / Unlocked Icon" class="h-6 w-6">
-            <x-button class="text-center" x-text="unlocked ? 'Click to Lock Calendar' : 'Click to Unlock Calendar'" @click="unlocked = !unlocked"></x-button>
+            <img x-cloak x-bind:src="unlocked ? unlocked_url : locked_url" alt="Locked / Unlocked Icon" class="h-6 w-6">
+            <x-button x-cloak class="text-center" x-text="unlocked ? 'Click to Lock Calendar' : 'Click to Unlock Calendar'" @click="unlocked = !unlocked"></x-button>
         </div>
     </div>
 
