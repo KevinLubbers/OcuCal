@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+<html x-cloak lang="{{ str_replace('_', '-', app()->getLocale()) }}"
 x-data="{darkMode: localStorage.getItem('dark') === 'true'}"
 x-init="$watch('darkMode', val => localStorage.setItem('dark', val))"
 x-bind:class="{'dark': darkMode}">

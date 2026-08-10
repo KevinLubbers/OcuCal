@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
+<html x-cloak lang="{{ str_replace('_', '-', app()->getLocale()) }}"
 x-data="{darkMode: localStorage.getItem('dark') === 'true'}"
 x-init="$watch('darkMode', val => localStorage.setItem('dark', val))"
 x-bind:class="{'dark': darkMode}">
@@ -13,7 +13,7 @@ x-bind:class="{'dark': darkMode}">
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
         <meta name="theme-color" content="#54526e">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'OcuCal') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -28,12 +28,12 @@ x-bind:class="{'dark': darkMode}">
     <body class="font-sans antialiased">
         <x-banner />
 
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div class="min-h-screen bg-gray-100 dark:bg-[#0a0a0a]">
             @livewire('navigation-menu')
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white dark:bg-gray-800 shadow">
+                <header class="bg-white dark:bg-gray-900 shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>

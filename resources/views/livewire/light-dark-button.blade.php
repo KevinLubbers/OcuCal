@@ -3,10 +3,11 @@
         $sun = 'imgs/sun.png';
         $moon = 'imgs/moon.png';
     @endphp
-    <button x-cloak @click="darkMode = !darkMode
+    <button type="button" tabindex="4" class="focus:border-[#97CA3D] dark:focus:border-[#97CA3D] focus:ring-[#97CA3D] dark:focus:ring-[#97CA3D] focus:outline-none" x-cloak @click="darkMode = !darkMode
         $refs.icon.classList.remove('icon-animate');
         void $refs.icon.offsetWidth;
-        $refs.icon.classList.add('icon-animate');">
+        $refs.icon.classList.add('icon-animate');"
+        >
        <img x-cloak x-ref="icon" alt="Toggle dark/light mode" class="ml-4 inline-flex items-center justify-center" width="30px" height="30px" :src="!darkMode ? '{{url($sun)}}' : '{{url($moon)}}'">
        
     </button>

@@ -75,7 +75,7 @@ new class extends Component {
 }; ?>
 
 
-<div class="bg-white dark:text-white dark:bg-gray-800 dark:bg-gradient-to-bl dark:from-gray-700/100 dark:via-transparent border-b border-gray-200 dark:border-gray-700"
+<div class="bg-white dark:text-white dark:bg-gray-900 dark:bg-gradient-to-bl dark:from-gray-800/100 dark:via-transparent border-b border-gray-200 dark:border-gray-700"
     x-data="{ period: false, fertility: false, sex: false, orgasms: false, medication: false, pregnancy: false, clearAll: false, showAll: false , unlocked: false, locked_url: 'imgs/locked.png', unlocked_url: 'imgs/unlocked.png'}" > 
 
     <h1 x-text="!unlocked ? 'Viewing Calendar' : 'Editing Calendar'" class="text-2xl font-medium text-gray-900 dark:text-white">
@@ -140,7 +140,7 @@ new class extends Component {
         <table class="table-auto w-full text-sm">
             <thead>
                 <tr>
-                    <th class="p-2 sticky left-0 bg-white dark:bg-gray-800 z-10">Day</th>
+                    <th class="p-2 sticky left-0 bg-white dark:bg-gray-900 z-10">Day</th>
 
                     @foreach ($months as $month)
                         <th class="p-2 text-center">
@@ -153,7 +153,7 @@ new class extends Component {
             <tbody>
                 @foreach ($days as $day)
                     <tr>
-                        <td class="font-bold text-center sticky left-0 bg-white dark:bg-gray-800 z-10">{{ $day }}</td>
+                        <td class="font-bold text-center sticky left-0 bg-white dark:bg-gray-900 z-10">{{ $day }}</td>
 
                         @foreach ($months as $month)
                             <td class="text-center align-middle border-l border-r border-gray-700 dark:border-gray-200">

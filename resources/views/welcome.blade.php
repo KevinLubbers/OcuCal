@@ -33,28 +33,37 @@ x-bind:class="{'dark': darkMode}">
                 <nav class="flex items-center justify-end gap-4">
                     @auth
                         <a
+                            tabindex="1"
                             href="{{ url('/calendar') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
+                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal focus:border-[#97CA3D] dark:focus:border-[#97CA3D] focus:ring-[#97CA3D] dark:focus:ring-[#97CA3D] focus:outline-none"
                         >
                             Calendar 
                         </a>
                     @else
                         <a
+                            tabindex="1"
                             href="{{ route('login') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal"
+                            class="inline-block whitespace-nowrap px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] border hover:border-[#19140035] dark:hover:border-[#3E3E3A] dark:border-[#3E3E3A] rounded-sm text-sm leading-normal focus:border-[#97CA3D] dark:focus:border-[#97CA3D] focus:ring-[#97CA3D] dark:focus:ring-[#97CA3D] focus:outline-none"
                         >
-                            Log in
+                            Log In
                         </a>
 
                         @if (Route::has('register'))
                             <a
+                                tabindex="2"
                                 href="{{ route('register') }}"
-                                class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal">
+                                class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal focus:border-[#97CA3D] dark:focus:border-[#97CA3D] focus:ring-[#97CA3D] dark:focus:ring-[#97CA3D] focus:outline-none">
                                 Register
                             </a>
                         @endif
                     @endauth
-                    <nav class="flex items-center justify-end gap-4">
+                    <a
+                        tabindex="3"
+                        href="{{url('https://github.com/KevinLubbers/OcuCal')}}"
+                        class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal focus:border-[#97CA3D] dark:focus:border-[#97CA3D] focus:ring-[#97CA3D] dark:focus:ring-[#97CA3D] focus:outline-none">
+                        GitHub
+                    </a>
+                    <nav class="flex items-center justify-end gap-4 focus:border-[#97CA3D] dark:focus:border-[#97CA3D] focus:ring-[#97CA3D] dark:focus:ring-[#97CA3D] focus:outline-none">
                         <livewire:light-dark-button />
                     </nav>
                 </nav>
