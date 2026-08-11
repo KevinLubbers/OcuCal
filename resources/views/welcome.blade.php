@@ -87,7 +87,8 @@ x-bind:class="{'dark': darkMode}">
                         A free and open-source women's health calendar designed with privacy in mind.
                     </p>
 
-                    <div class="grid md:grid-cols-2 gap-4 mt-4 w-full">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 w-fit mx-auto md:w-full md:max-w-3xl lg:max-w-none text-left">
+    
                         <div class="p-4 rounded-xl shadow bg-white dark:bg-gray-800">
                             🔒 No tracking, ads, or selling your data
                         </div>
