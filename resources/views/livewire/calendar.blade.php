@@ -81,7 +81,7 @@ new class extends Component {
     @mouseup.window="dragging = false"
     @mouseleave.window="dragging = false" > 
 
-    <h1 x-cloak x-text="!unlocked ? 'Viewing Calendar' : 'Editing Calendar'" class="text-2xl font-medium text-gray-900 dark:text-white">
+    <h1 x-cloak x-text="!unlocked ? 'Viewing Calendar' : 'Editing Calendar'" class="text-2xl pl-2 pt-2 font-medium text-gray-900 dark:text-white">
     </h1>
 
     <div class="overflow-auto">
@@ -112,36 +112,36 @@ new class extends Component {
                 />
             </svg>
         </div>
-        <div class="flex flex-row flex-wrap gap-x-6 gap-y-2 pl-2">
-            <div class="flex items-center gap-2">
+        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 pl-2 justify-items-start">
+            <div class="flex flex-row flex-wrap gap-x-6 gap-y-2 ">
                 <x-checkbox x-model="period" />
-                <x-label x-cloak for="period" x-text="!unlocked ? 'Show Period' : 'Add Period'" />
                 <div class="mx-auto w-4 h-4 rounded-full bg-red-800"></div>
+                <x-label x-cloak for="period" x-text="!unlocked ? 'Show Period' : 'Add Period'" />
             </div>
-            <div class="flex items-center gap-2">
+            <div class="flex flex-row flex-wrap gap-x-6 gap-y-2 ">
                 <x-checkbox x-model="fertility" />
-                <x-label x-cloak for="fertility" x-text="!unlocked ? 'Show Fertility' : 'Add Fertility'" />
                 <div class="mx-auto w-4 h-4 rounded-full bg-orange-600"></div>
+                <x-label x-cloak for="fertility" x-text="!unlocked ? 'Show Fertility' : 'Add Fertility'" />
             </div>
-            <div class="flex items-center gap-2">
+            <div class="flex flex-row flex-wrap gap-x-6 gap-y-2 ">
                 <x-checkbox x-model="sex"  />
-                <x-label x-cloak for="sex" x-text="!unlocked ? 'Show Sexual Activity' : 'Add Sexual Activity'" />
                 <div class="mx-auto w-4 h-4 rounded-full bg-purple-800"></div>
+                <x-label x-cloak for="sex" x-text="!unlocked ? 'Show Sexual Activity' : 'Add Sexual Activity'" />
             </div>
-            <div class="flex items-center gap-2">
+            <div class="flex flex-row flex-wrap gap-x-6 gap-y-2 ">
                 <x-checkbox x-model="orgasms" />
-                <x-label x-cloak for="orgasms" x-text="!unlocked ? 'Show Orgasms' : 'Add Orgasms'" />
                 <div class="mx-auto w-4 h-4 rounded-full bg-indigo-500"></div>
+                <x-label x-cloak for="orgasms" x-text="!unlocked ? 'Show Orgasms' : 'Add Orgasms'" />
             </div>
-            <div class="flex items-center gap-2">
+            <div class="flex flex-row flex-wrap gap-x-6 gap-y-2 ">
                 <x-checkbox x-model="medication" />
-                <x-label x-cloak for="medication" x-text="!unlocked ? 'Show Medication' : 'Add Medication'" />
                 <div class="mx-auto w-4 h-4 rounded-full bg-green-600"></div>
+                <x-label x-cloak for="medication" x-text="!unlocked ? 'Show Medication' : 'Add Medication'" />
             </div>
-            <div class="flex items-center gap-2">
+            <div class="flex flex-row flex-wrap gap-x-6 gap-y-2 ">
                 <x-checkbox x-model="pregnancy" />
-                <x-label x-cloak for="pregnancy" x-text="!unlocked ? 'Show Pregnancy' :'Add Pregnancy'" />
                 <div class="mx-auto w-4 h-4 rounded-full bg-blue-500"></div>
+                <x-label x-cloak for="pregnancy" x-text="!unlocked ? 'Show Pregnancy' :'Add Pregnancy'" />
             </div>
         </div>
         <div class="flex flex-row flex-wrap gap-x-6 gap-y-2 mt-2 pl-2">

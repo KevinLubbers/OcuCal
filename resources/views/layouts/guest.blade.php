@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html x-cloak lang="{{ str_replace('_', '-', app()->getLocale()) }}"
-x-data="{darkMode: localStorage.getItem('dark') === 'true'}"
+x-data="{
+        darkMode: localStorage.getItem('dark') !== null
+            ? localStorage.getItem('dark') === 'true'
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
+    }"
 x-init="$watch('darkMode', val => localStorage.setItem('dark', val))"
 x-bind:class="{'dark': darkMode}">
     <head>
@@ -13,7 +17,7 @@ x-bind:class="{'dark': darkMode}">
         <link rel="apple-touch-icon" href="/apple-touch-icon.png">
         <meta name="theme-color" content="#54526e">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'OcuCal') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">

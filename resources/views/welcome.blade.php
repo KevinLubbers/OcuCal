@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}"
-x-data="{darkMode: localStorage.getItem('dark') === 'true'}"
+x-data="{
+        darkMode: localStorage.getItem('dark') !== null
+            ? localStorage.getItem('dark') === 'true'
+            : window.matchMedia('(prefers-color-scheme: dark)').matches
+    }"
 x-init="$watch('darkMode', val => localStorage.setItem('dark', val))"
 x-bind:class="{'dark': darkMode}">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', 'OcuCal') }}</title>
 
         <!-- PWA manifest -->
         <link rel="manifest" href="/site.webmanifest">
