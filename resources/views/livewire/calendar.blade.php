@@ -112,7 +112,7 @@ new class extends Component {
                 />
             </svg>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 pl-2 justify-items-start">
+        <div class="grid grid-cols-1 min-[480px]:grid-cols-2 lg:grid-cols-3 pl-2 justify-items-start">
             <div class="flex flex-row flex-wrap gap-x-6 gap-y-2 ">
                 <x-checkbox x-model="period" />
                 <div class="mx-auto w-4 h-4 rounded-full bg-red-800"></div>

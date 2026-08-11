@@ -29,22 +29,26 @@ A PWA combines features of traditional websites and native mobile apps:
 - Can work offline or with limited connectivity if configured to cache content
 - Can send notifications on supported devices and browsers
 ### Install on Android 
-1. Tap the menu icon (⋮) in the top-right corner.
-2. Select "Install app" or "Add to Home screen".
-3. Confirm by tapping "Install" or "Add".
-4. The app will appear on your Home Screen and can be launched like a native app.
+1. Visit [ocucal.com](ocucal.com)
+2. Tap the menu icon (⋮) in the top-right corner.
+3. Select "Install app" or "Add to Home screen".
+4. Confirm by tapping "Install" or "Add".
+5. The app will appear on your Home Screen and can be launched like a native app.
 ### Install on iOS
-1. Tap the Share button (the square with an upward arrow).
-2. Scroll down and tap "Add to Home Screen".
-3. Optionally edit the app name.
-4. Tap "Add" in the top-right corner.
-5. The app icon will be added to your Home Screen and can be launched like a native app.
+1. Visit [ocucal.com](ocucal.com)
+2. Tap the Share button (the square with an upward arrow).
+3. Scroll down and tap "Add to Home Screen".
+4. Optionally edit the app name.
+5. Tap "Add" in the top-right corner.
+6. The app icon will be added to your Home Screen and can be launched like a native app.
 
 ## Future Enhancements
 
 - Cycle predictions
 - Reminders and notifications
+- Offline functionality
 - Data export
-- Custom health tracking categories
 - "Peak Fertility" marker
-- Rename the different Trackable fields
+- Ability to rename the different Trackable fields
+- Add how to self host
+- OAuth login
