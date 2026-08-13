@@ -24,6 +24,34 @@
                 <x-label for="password" value="{{ __('Password') }}" />
                 <x-input id="password" tabindex="2" class="block mt-1 w-full" type="password" name="password" required />
             </div>
+            <hr class="mt-4 mb-4">
+
+            <a
+                href="{{ route('google.redirect') }}"
+                class="inline-flex w-full items-center justify-center gap-3 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-sm font-semibold text-gray-700 shadow-sm transition hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-[#97CA3D] focus:ring-offset-2 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100 dark:hover:bg-gray-700"
+            >
+                <svg class="h-5 w-5" viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                        fill="#4285F4"
+                        d="M21.35 12.23c0-.79-.07-1.55-.2-2.28H12v4.31h5.24a4.48 4.48 0 0 1-1.94 2.94v2.44h3.14c1.84-1.69 2.91-4.18 2.91-7.41z"
+                    />
+                    <path
+                        fill="#34A853"
+                        d="M12 21.6c2.63 0 4.84-.87 6.45-2.36l-3.14-2.44c-.87.58-1.98.92-3.31.92-2.54 0-4.69-1.72-5.46-4.03H3.3v2.52A9.74 9.74 0 0 0 12 21.6z"
+                    />
+                    <path
+                        fill="#FBBC05"
+                        d="M6.54 13.69A5.86 5.86 0 0 1 6.23 12c0-.59.11-1.17.31-1.69V7.79H3.3A9.74 9.74 0 0 0 2.27 12c0 1.57.38 3.05 1.03 4.21l3.24-2.52z"
+                    />
+                    <path
+                        fill="#EA4335"
+                        d="M12 6.28c1.43 0 2.71.49 3.72 1.46l2.79-2.79C16.83 3.39 14.63 2.4 12 2.4a9.74 9.74 0 0 0-8.7 5.39l3.24 2.52C7.31 8 9.46 6.28 12 6.28z"
+                    />
+                </svg>
+
+                <span>Continue with Google</span>
+            </a>
+
 
             <div class="block mt-4">
                 <label for="remember_me" class="flex items-center">

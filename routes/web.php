@@ -2,10 +2,20 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CalendarToggleController;
+use Laravel\Socialite\Facades\Socialite;
+use App\Http\Controllers\SocialiteLoginController;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('landing');
+
+Route::get('/auth/github/redirect', [SocialiteLoginController::class, 'githubRedirect'])->name('github.redirect');
+
+Route::get('/auth/github/callback', [SocialiteLoginController::class, 'githubCallback'])->name('github.callback');
+
+Route::get('auth/google/redirect', [SocialiteLoginController::class, 'googleRedirect'])->name('google.redirect');
+
+Route::get('auth/google/callback', [SocialiteLoginController::class, 'googleCallback'])->name('google.callback');
 
 Route::middleware([
     'auth:sanctum',
