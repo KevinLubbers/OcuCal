@@ -11,10 +11,10 @@ Route::get('/', function () {
 
 Route::get('/auth/github/redirect', [SocialiteLoginController::class, 'githubRedirect'])->name('github.redirect');
 Route::get('/auth/github/callback', [SocialiteLoginController::class, 'githubCallback'])->name('github.callback');
-Route::get('auth/google/redirect', [SocialiteLoginController::class, 'googleRedirect'])->name('google.redirect');
-Route::get('auth/google/callback', [SocialiteLoginController::class, 'googleCallback'])->name('google.callback');
-Route::get('auth/facebook/redirect', [SocialiteLoginController::class, 'facebookRedirect'])->name('facebook.redirect');
-Route::get('auth/facebook/callback', [SocialiteLoginController::class, 'facebookCallback'])->name('facebook.callback');
+Route::get('/auth/google/redirect', [SocialiteLoginController::class, 'googleRedirect'])->name('google.redirect');
+Route::get('/auth/google/callback', [SocialiteLoginController::class, 'googleCallback'])->name('google.callback');
+Route::get('/auth/facebook/redirect', [SocialiteLoginController::class, 'facebookRedirect'])->name('facebook.redirect');
+Route::get('/auth/facebook/callback', [SocialiteLoginController::class, 'facebookCallback'])->name('facebook.callback');
 
 Route::middleware([
     'auth:sanctum',
