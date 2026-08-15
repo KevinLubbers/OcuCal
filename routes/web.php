@@ -24,10 +24,15 @@ Route::middleware([
     Route::get('/calendar', function () {
         return view('dashboard');
     })->name('calendar');
-    Route::get('/adding', function () {
-        return view('adding');
-    })->name('adding');
 
     Route::post('/calendar/toggle', CalendarToggleController::class)->name('calendar.toggle');
+
+    Route::get('/data', function () {
+        return view('data');
+    })->name('data');
+
+    #Route::get('/adding', function () {
+    #    return view('adding');
+    #})->name('adding');
 
 });

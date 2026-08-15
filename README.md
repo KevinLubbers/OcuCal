@@ -44,11 +44,11 @@ A PWA combines features of traditional websites and native mobile apps:
 
 ## Future Enhancements
 
-- Cycle predictions
-- Reminders and notifications
-- Offline functionality
-- Data export
-- "Peak Fertility" marker
-- Ability to rename the different Trackable fields
-- Add how to self host
-- OAuth login
+- [ ] Cycle predictions
+- [ ] Reminders and notifications
+- [ ] Offline functionality
+- [ ] Data export
+- [ ] "Peak Fertility" marker
+- [ ] Ability to rename the different Trackable fields
+- [ ] Add how to self host
+- [x] ~~OAuth login~~
