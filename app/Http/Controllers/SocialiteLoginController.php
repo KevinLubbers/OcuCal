@@ -23,12 +23,20 @@ class SocialiteLoginController extends Controller
         $user = User::where('google_id', $googleUser->id)->first();
 
         if (!$user) {
-            $user = User::create([
-                'google_id' => $googleUser->id,
-                'name' => $googleUser->name,
-                'email' => $googleUser->email,
-                'password' => Hash::make(Str::random(64)),
-            ]);
+            $user = User::where('email', $googleUser->email)->first();
+            if (!$user) {
+                $user = User::create([
+                    'google_id' => $googleUser->id,
+                    'name' => $googleUser->name,
+                    'email' => $googleUser->email,
+                    'password' => Hash::make(Str::random(64)),
+                ]);
+            }
+            else{
+                $user->update([
+                    'google_id' => $googleUser->id,
+                ]);
+            }
         }
 
         Auth::login($user);
@@ -48,12 +56,20 @@ class SocialiteLoginController extends Controller
         $user = User::where('github_id', $githubUser->id)->first();
 
         if (!$user) {
-            $user = User::create([
-                'name' => $githubUser->name,
-                'email' => $githubUser->email,
-                'github_id' => $githubUser->id,
-                'password' => Hash::make(Str::random(64)),
-            ]);
+            $user = User::where('email', $githubUser->email)->first();
+            if (!$user) {
+                $user = User::create([
+                    'github_id' => $githubUser->id,
+                    'name' => $githubUser->name,
+                    'email' => $githubUser->email,
+                    'password' => Hash::make(Str::random(64)),
+                ]);
+            }
+            else {
+                $user->update([
+                    'github_id' => $githubUser->id,
+                ]);
+            }
         }
 
         Auth::login($user);
